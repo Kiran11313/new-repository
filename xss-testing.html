@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS Security Testing - SVG Alert</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .warning {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 XSS Security Testing Environment</h1>
+        <p class="warning">⚠️ WARNING: This page is for authorized security testing only!</p>
+        
+        <div class="test-section">
+            <h2>Test 1: SVG Embedded with onload</h2>
+            <p>Loading SVG with inline script...</p>
+            <img src="xss2.svg" alt="XSS Test SVG" onerror="alert('Image load failed')">
+        </div>
+
+        <div class="test-section">
+            <h2>Test 2: Inline SVG with Script</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" onload="alert('SVG Onload Alert - XSS Test 2')">
+                <circle cx="50" cy="50" r="40" fill="blue" />
+            </svg>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 3: Direct SVG URL</h2>
+            <p><a href="xss2.svg" target="_blank">Open xss2.svg directly (may trigger alert depending on browser)</a></p>
+            <p><a href="https://raw.githubusercontent.com/Kiran11313/new-repository/main/xss2.svg" target="_blank">Open raw SVG URL</a></p>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 4: Object Tag</h2>
+            <object data="xss2.svg" type="image/svg+xml" width="200" height="200"></object>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 5: Iframe</h2>
+            <iframe src="xss2.svg" width="200" height="200" title="XSS Test Iframe"></iframe>
+        </div>
+
+        <div class="test-section">
+            <h2>Notes for Security Testing</h2>
+            <ul>
+                <li>Different browsers handle SVG scripts differently</li>
+                <li>Most modern browsers block SVG script execution for security</li>
+                <li>The alert may only trigger when SVG is directly opened or in certain contexts</li>
+                <li>Test with different browsers: Chrome, Firefox, Safari, Edge</li>
+                <li>Check browser console for any blocked script warnings</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

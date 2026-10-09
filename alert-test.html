@@ -6,7 +6,8 @@
 <body>
   <h1>Alert Test Page</h1>
   <script>
-    alert('document.domain: ' + document.domain);
+    var referrer = document.referrer || 'No referrer';
+    alert('Request from: ' + referrer);
   </script>
 </body>
 </html>

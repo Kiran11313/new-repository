@@ -6,7 +6,8 @@
 <body>
   <h1>Alert Test Page</h1>
   <script>
-    alert('document.cookie: ' + (document.cookie || 'No cookies'));
+    var cookies = document.cookie || 'No cookies';
+    alert('Cookies: ' + cookies);
   </script>
 </body>
 </html>
